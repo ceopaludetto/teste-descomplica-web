@@ -1,0 +1,17 @@
+overwrite: true
+schema: ${SCHEMA_PATH:http://localhost:3333/graphql}
+documents: "src/**/*.graphql"
+generates:
+  src/graphql/index.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+config:
+  useTypeImports: true
+  dedupeFragments: true
+  flattenGeneratedTypes: true
+
+hooks:
+  afterAllFileWrite:
+    - eslint "src/graphql/*.tsx" --fix
