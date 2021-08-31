@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.4.10",
+    "@hookform/resolvers": "^2.8.0",
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/lab": "^4.0.0-alpha.60",
+    "@material-ui/styles": "^4.11.4",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -10,23 +15,31 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "graphql": "^15.5.1",
+    "material-ui-popup-state": "^1.9.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-helmet-async": "^1.1.2",
+    "react-hook-form": "^7.14.1",
+    "react-icons": "^4.2.0",
+    "react-router-dom": "^5.2.1",
     "react-scripts": "4.0.3",
+    "react-use": "^17.2.4",
+    "rifm": "^0.12.0",
     "typescript": "^4.1.2",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "yup": "^0.32.9"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "start:prod": "serve build -s -p 3000",
+    "start": "graphql-codegen --config codegen.yml; craco start",
+    "build": "graphql-codegen --config codegen.yml; craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject",
+    "codegen": "graphql-codegen --config codegen.yml",
+    "lint": "eslint \"src/**/*.{ts,tsx}\" --fix",
+    "docker:dev": "docker-compose -f docker-compose.development.yml up -d",
+    "docker:prod": "docker-compose -f docker-compose.production.yml up -d"
   },
   "browserslist": {
     "production": [
@@ -39,5 +52,30 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@craco/craco": "^6.2.0",
+    "@graphql-codegen/cli": "2.1.1",
+    "@graphql-codegen/typescript": "2.1.2",
+    "@graphql-codegen/typescript-operations": "2.1.2",
+    "@graphql-codegen/typescript-react-apollo": "3.1.2",
+    "@types/react-router-dom": "^5.1.8",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
+    "babel-plugin-graphql-tag": "^3.3.0",
+    "babel-plugin-lodash": "^3.3.4",
+    "babel-plugin-optimize-clsx": "^2.6.2",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-typescript": "^14.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-import-helpers": "^1.1.0",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.25.1",
+    "lodash-webpack-plugin": "^0.11.6",
+    "prettier": "^2.3.2",
+    "serve": "^12.0.0"
   }
 }

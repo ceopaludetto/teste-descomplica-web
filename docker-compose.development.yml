@@ -1,0 +1,22 @@
+version: "2"
+
+services:
+  app:
+    container_name: descomplica-web
+    build:
+      context: "."
+      dockerfile: "./Dockerfile.dev"
+    ports:
+      - 3000:3000
+    environment:
+      SCHEMA_PATH: http://api:3333/graphql
+    volumes:
+      - .:/app
+    env_file: .env.local
+    networks:
+      - internal
+
+networks:
+  internal:
+    external:
+      name: descomplica-internal
