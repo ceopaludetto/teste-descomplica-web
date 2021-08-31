@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Suspense, lazy } from "react";
+import { Helmet } from "react-helmet-async";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-function App() {
+import { CssBaseline } from "@material-ui/core";
+
+import { Footer, Page } from "./components";
+import { useFonts } from "./hooks/use-fonts";
+
+const StudentList = lazy(() => import("./pages/student-list"));
+const AddStudent = lazy(() => import("./pages/add-student"));
+
+export function App() {
+  useFonts();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Helmet>
+        <title>Desafio | Descomplica</title>
+        <meta name="description" content="Desafio Tech Descomplica" />
+        <link rel="preconnect" href={process.env.REACT_APP_ENVIROMENT_URL} />
+      </Helmet>
+      <CssBaseline />
+      <Suspense fallback={<Page.Skeleton />}>
+        <Switch>
+          <Route path="/" exact component={StudentList} />
+          <Route path="/add/:id?" exact component={AddStudent} />
+        </Switch>
+      </Suspense>
+      <Footer />
+    </BrowserRouter>
   );
 }
-
-export default App;

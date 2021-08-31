@@ -1,0 +1,26 @@
+fragment StudentValues on Student {
+  id
+  name
+  email
+  cpf
+  createdAt
+  updatedAt
+}
+
+query FindAllStudents($name: String, $email: String, $cpf: String) {
+  findAllStudents(name: $name, email: $email, cpf: $cpf) {
+    ...StudentValues
+  }
+}
+
+mutation CreateStudent($input: StudentCreateDTO!) {
+  createStudent(input: $input) {
+    ...StudentValues
+  }
+}
+
+mutation DeleteStudent($id: ID!) {
+  deleteStudent(id: $id) {
+    ...StudentValues
+  }
+}
