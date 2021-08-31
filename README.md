@@ -23,6 +23,6 @@
 4. É possível também executar sem a utilização do `docker` através dos comandos:
 
    1. `yarn start` ou `npm run start`, para executar o ambiente de desenvolvimento;
-   2. `yarn build` ou `npm run build` seguido de `yarn serve` ou `npm run serve`, para executar o ambiente de produção;
+   2. `yarn build` ou `npm run build` seguido de `yarn start:prod` ou `npm run start:prod`, para executar o ambiente de produção;
 
 5. Para acessar a aplicação va até http://localhost:3000.
